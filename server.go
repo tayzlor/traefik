@@ -16,6 +16,7 @@ import (
 	"github.com/mailgun/oxy/cbreaker"
 	"github.com/mailgun/oxy/forward"
 	"github.com/mailgun/oxy/roundrobin"
+	"github.com/spf13/viper"
 	"net/http"
 	"net/url"
 	"os"
@@ -25,6 +26,8 @@ import (
 	"syscall"
 	"time"
 )
+
+var oxyLogger = &OxyLogger{}
 
 // Server is the reverse-proxy/load-balancer engine
 type Server struct {
@@ -172,7 +175,7 @@ func (server *Server) configureProviders() {
 	if server.globalConfiguration.File != nil {
 		if len(server.globalConfiguration.File.Filename) == 0 {
 			// no filename, setting to global config file
-			server.globalConfiguration.File.Filename = *globalConfigFile
+			server.globalConfiguration.File.Filename = viper.GetString("configFile")
 		}
 		server.providers = append(server.providers, server.globalConfiguration.File)
 	}

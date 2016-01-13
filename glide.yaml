@@ -150,4 +150,6 @@ import:
   version: ee7b3e0353166ab1f3a605294ac8cd2b77953778
 - package: github.com/spf13/viper
   version: a212099cbe6fbe8d07476bfda8d2d39b6ff8f325
-- package: github.com/jessevdk/go-flags
+- package: github.com/spf13/cobra
+  subpackages:
+  - /cobra

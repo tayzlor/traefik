@@ -14,7 +14,7 @@ type BoltDb struct {
 // Provide allows the provider to provide configurations to traefik
 // using the given configuration channel.
 func (provider *BoltDb) Provide(configurationChan chan<- types.ConfigMessage) error {
-	provider.StoreType = store.BOLTDB
+	provider.storeType = store.BOLTDB
 	boltdb.Register()
 	return provider.provide(configurationChan)
 }
